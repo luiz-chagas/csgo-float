@@ -1,0 +1,28 @@
+{
+  "name": "csgo-float",
+  "version": "1.0.0",
+  "description": "API for CSGO items",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luizjr92/csgo-float.git"
+  },
+  "author": "Luiz Chagas Jr",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/luizjr92/csgo-float/issues"
+  },
+  "homepage": "https://github.com/luizjr92/csgo-float#readme",
+  "dependencies": {
+    "bluebird": "^3.5.0",
+    "body-parser": "^1.17.1",
+    "csgo-floats": "0.0.3",
+    "express": "^4.15.2",
+    "fs": "0.0.1-security",
+    "steam-totp": "^1.4.0",
+    "steam-user": "^3.19.1"
+  }
+}

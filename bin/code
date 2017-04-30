@@ -1,0 +1,6 @@
+//Provides code for bot authentication
+
+var SteamTotp = require('steam-totp');
+var config = require('../config/bot.json');
+
+console.log(SteamTotp.getAuthCode(config.shared_secret));
