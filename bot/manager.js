@@ -49,7 +49,7 @@ class BotManager {
   getItemDetails(url) {
     return master.inspect(url)
       .then(item => {
-        resolve(item);
+        return item;
       })
       .catch(err => {
         console.log('Error resolving item: ' + err);
