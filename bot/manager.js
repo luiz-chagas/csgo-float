@@ -55,8 +55,7 @@ class BotManager {
         console.log('Error resolving item: ' + err);
         throw err;
       });
-  });
-}
+  }
 }
 
 module.exports = BotManager;
