@@ -8,14 +8,20 @@ router.post('/', (req, res) => {
   let url = req.body.url;
   let valid = url.match(/[SM]([0-9]*)A([0-9]*)D([0-9]*)/);
   if (!valid) {
-    return res.status(500).send();
+    return res.status(500).json({
+      error: "Invalid input."
+    });
   }
-  bot.getItemDetails(req.body.url).then(item => {
-    res.json({
+  return bot.getItemDetails(req.body.url)
+  .then(item => {
+    return res.status(200).json({
       "iteminfo": item
     });
-  }).catch(error => {
-    res.status(500).send();
+  })
+  .catch(error => {
+    return res.status(500).json({
+      error: error
+    });
   });
 });
 

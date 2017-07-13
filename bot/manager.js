@@ -31,25 +31,32 @@ class BotManager {
 
     client.on('loggedOn', function () {
       client.setPersona(SteamUser.EPersonaState.Online, "CSGO Float Bot by luizjr.me");
+      master.addBot(client).then(accountID => {
+        console.log(`Account ${accountID} added to bot master.`)
+      }).catch(error => {
+        console.log('Error adding bot to bot master.', error)
+      });
     });
 
-    master.addBot(client).then(accountID => {
-      console.log(`Account ${accountID} added to bot master.`)
-    }).catch(error => {
-      console.log('Error adding bot to bot master.', error)
+    client.on('steamGuard', (domain, callback, wrongCode) => {
+      console.log("Wrong Auth Code. Waiting 40 secs");
+      setTimeout(() => {
+        callback(SteamTotp.getAuthCode(config.shared_secret));
+      }, 40 * 1000);
     });
   }
 
   getItemDetails(url) {
-    return new Promise((resolve, reject) => {
-      master.inspect(url).then(item => {
+    return master.inspect(url)
+      .then(item => {
         resolve(item);
-      }).catch(error => {
-        console.log('Error resolving item.', error);
-        reject();
+      })
+      .catch(err => {
+        console.log('Error resolving item: ' + err);
+        throw err;
       });
-    });
-  }
+  });
+}
 }
 
 module.exports = BotManager;
